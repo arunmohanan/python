@@ -1,3 +1,5 @@
+from math import sqrt
+from Util import Timer
 class PracticeUtils:
     numberDict = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'severn', 'eight', 'nine']
     teenDict = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
@@ -30,15 +32,37 @@ class PracticeUtils:
         else:
             strNumber.append(self.numberDict[testNumber])
             return strNumber
+        
 class FibanocciNumberGenerator:
-    def print_fibanocci(self, maxCountOfFibanocciNumber):
-    def print_fibanocci(self, ):
-    def print_fibanocci(self, ):
-    def printself, ):
+    def getFibanocciUsingForLoop(self, maxCountOfFibanocciNumber):
         n0 = 0
         n1 = 1
-        print(n0)
-        print(n1)
-        for n in range(maxCountOfFibanocciNumber):
-            n0, n1 = n1, n0+n1
-            print(n1)
+        fibanocciNumbers = []
+        fibanocciNumbers.append(n0)
+        for n in range(maxCountOfFibanocciNumber - 1):
+            fibanocciNumbers.append(n1)
+            n0, n1 = n1, n0 + n1
+        return fibanocciNumbers
+
+    def getFibanocciNumberUsingRecursion(self, maxCountOfFibanocciNumber):
+        if(maxCountOfFibanocciNumber == 0):
+            return 0
+        elif(maxCountOfFibanocciNumber == 1):
+            return 1
+        else:
+            nextFibanocciNumber = self.getFibanocciNumberUsingRecursion(maxCountOfFibanocciNumber - 1) + self.getFibanocciNumberUsingRecursion(maxCountOfFibanocciNumber - 2)
+            return nextFibanocciNumber
+
+class PrimeNumber:
+    def isPrimeNumber(self, number):
+        with Timer():
+            if number == 2:
+                return True
+            if number < 2:
+                return False
+            if number > 2 and number % 2 == 0:
+                return False
+            for value in range(3, int(sqrt(number)) + 1, 2):
+                if number % value == 0:
+                    return False
+                return True 
